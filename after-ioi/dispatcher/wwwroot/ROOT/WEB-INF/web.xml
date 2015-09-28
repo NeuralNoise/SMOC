@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<context-param>
+		<param-name>gradingPort</param-name>
+		<param-value>7263</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>adminPassword</param-name>
+		<param-value>qUqP5cyxm6YcTAhz05Hph5gvu9M=</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>bg.smoc.web.listener.StartUpListener</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>bg.smoc.web.filter.AuthenticationFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>bg.smoc.web.filter.EncodingFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>SubmitSaveAs</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.contestant.SubmitSaveAs</servlet-class>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SaveSourceServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.judge.SaveSourceServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MainServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.MainServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>PrintServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.PrintServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>BackupServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.BackupServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DoSubmitServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.DoSubmitServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DoTestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.DoTestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ChooseContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.contestant.ChooseContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>LogIntoContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.contestant.LogIntoContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>RegisterServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.contestant.RegisterServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>RegisterForContestServlet</servlet-name>
+		<servlet-class>
+			bg.smoc.web.servlet.contestant.RegisterForContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ResultsServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.ResultsServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ContestSetupServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.ContestSetupServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddNewContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.AddNewContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DeleteContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.DeleteContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>UpdateContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.UpdateContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>EditContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.EditContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AccountsServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.AccountsServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddUserAccountsServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.AddUserAccountsServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ChangeUsersContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.ChangeUsersContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>EditAccountServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.EditAccountServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>UpdateAccountServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.UpdateAccountServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DeleteAccountServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.DeleteAccountServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>UpdateTaskListServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.UpdateTaskListServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddContestTaskServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.AddContestTaskServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>EditTaskServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.EditTaskServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>UpdateTaskServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.UpdateTaskServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DeleteTaskServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.DeleteTaskServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>StartContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.StartContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>StopContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.StopContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SetTestingAllowedServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.SetTestingAllowedServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SetFeedbackActiveServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.contest.SetFeedbackActiveServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GradeContestServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.GradeContestServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GradeCsvServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.grade.GradeCsvServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>PersonsServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.PersonsServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddPersonServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.AddPersonServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>EditPersonServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.EditPersonServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>AddPersonLoginServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.AddPersonLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>RemovePersonLoginServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.RemovePersonLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>UpdatePersonServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.UpdatePersonServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SelectPersonServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.SelectPersonServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DeletePersonServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.person.DeletePersonServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ComplexContestReportServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.report.ComplexContestReportServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>ContestantLoginServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.contestant.ContestantLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>GradeServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.grade.GradeServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>LoginJudgeServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.judge.LoginJudgeServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>LogoutJudgeServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.judge.LogoutJudgeServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>MainJudgeServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.judge.MainJudgeServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>SwitchAnalysisModeServlet</servlet-name>
+		<servlet-class>
+			bg.smoc.web.servlet.judge.contest.SwitchAnalysisModeServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>UploadTestDataServlet</servlet-name>
+		<servlet-class>
+			bg.smoc.web.servlet.judge.contest.UploadTestDataServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>DownloadTestDataServlet</servlet-name>
+		<servlet-class>
+			bg.smoc.web.servlet.judge.contest.DownloadTestDataServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>PushTestDataServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.judge.PushTestDataServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>PrintContestReportServlet</servlet-name>
+		<servlet-class>bg.smoc.web.servlet.contest.PrintContestReportServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ChooseContestServlet</servlet-name>
+		<url-pattern>/chooseContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>BackupServlet</servlet-name>
+		<url-pattern>/backup</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DoSubmitServlet</servlet-name>
+		<url-pattern>/doSubmit</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DoTestServlet</servlet-name>
+		<url-pattern>/doTest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SubmitSaveAs</servlet-name>
+		<url-pattern>/download_submit_file/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SaveSourceServlet</servlet-name>
+		<url-pattern>/judge/download_source</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ContestantLoginServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>LogIntoContestServlet</servlet-name>
+		<url-pattern>/logIntoContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MainServlet</servlet-name>
+		<url-pattern>/main</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>PrintServlet</servlet-name>
+		<url-pattern>/print</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>RegisterServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>RegisterForContestServlet</servlet-name>
+		<url-pattern>/registerForContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ResultsServlet</servlet-name>
+		<url-pattern>/judge/results_all</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ContestSetupServlet</servlet-name>
+		<url-pattern>/judge/contestSetup</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AddNewContestServlet</servlet-name>
+		<url-pattern>/judge/addNewContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DeleteContestServlet</servlet-name>
+		<url-pattern>/judge/deleteContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UpdateContestServlet</servlet-name>
+		<url-pattern>/judge/updateContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>EditContestServlet</servlet-name>
+		<url-pattern>/judge/editContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AccountsServlet</servlet-name>
+		<url-pattern>/judge/accounts</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AddUserAccountsServlet</servlet-name>
+		<url-pattern>/judge/addUserAccounts</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ChangeUsersContestServlet</servlet-name>
+		<url-pattern>/judge/changeUsersContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>EditAccountServlet</servlet-name>
+		<url-pattern>/judge/editAccount</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UpdateAccountServlet</servlet-name>
+		<url-pattern>/judge/updateAccount</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DeleteAccountServlet</servlet-name>
+		<url-pattern>/judge/deleteAccount</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UpdateTaskListServlet</servlet-name>
+		<url-pattern>/judge/updateTaskList</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UploadTestDataServlet</servlet-name>
+		<url-pattern>/judge/uploadTestData</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AddContestTaskServlet</servlet-name>
+		<url-pattern>/judge/addContestTask</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>EditTaskServlet</servlet-name>
+		<url-pattern>/judge/editTask</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UpdateTaskServlet</servlet-name>
+		<url-pattern>/judge/updateTask</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DeleteTaskServlet</servlet-name>
+		<url-pattern>/judge/deleteTask</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>StartContestServlet</servlet-name>
+		<url-pattern>/judge/startContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>StopContestServlet</servlet-name>
+		<url-pattern>/judge/stopContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SetTestingAllowedServlet</servlet-name>
+		<url-pattern>/judge/setTestingAllowed</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SetFeedbackActiveServlet</servlet-name>
+		<url-pattern>/judge/setFeedbackActive</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GradeContestServlet</servlet-name>
+		<url-pattern>/judge/gradeContest</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GradeCsvServlet</servlet-name>
+		<url-pattern>/judge/gradeCsv</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>PersonsServlet</servlet-name>
+		<url-pattern>/judge/persons</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AddPersonServlet</servlet-name>
+		<url-pattern>/judge/addPerson</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>EditPersonServlet</servlet-name>
+		<url-pattern>/judge/editPerson</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AddPersonLoginServlet</servlet-name>
+		<url-pattern>/judge/addPersonLogin</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>RemovePersonLoginServlet</servlet-name>
+		<url-pattern>/judge/removePersonLogin</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>UpdatePersonServlet</servlet-name>
+		<url-pattern>/judge/updatePerson</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SelectPersonServlet</servlet-name>
+		<url-pattern>/judge/selectPerson</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DeletePersonServlet</servlet-name>
+		<url-pattern>/judge/deletePerson</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ComplexContestReportServlet</servlet-name>
+		<url-pattern>/judge/complexContestReport</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>ResultsServlet</servlet-name>
+		<url-pattern>/judge/contestReport</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>GradeServlet</servlet-name>
+		<url-pattern>/judge/grade</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>LoginJudgeServlet</servlet-name>
+		<url-pattern>/judge/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>LogoutJudgeServlet</servlet-name>
+		<url-pattern>/judge/logout</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>MainJudgeServlet</servlet-name>
+		<url-pattern>/judge/main</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>SwitchAnalysisModeServlet</servlet-name>
+		<url-pattern>/judge/switchAnalysisMode</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>DownloadTestDataServlet</servlet-name>
+		<url-pattern>/judge/downloadTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>PushTestDataServlet</servlet-name>
+		<url-pattern>/judge/pushTests</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>PrintContestReportServlet</servlet-name>
+		<url-pattern>/judge/printContestReport</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>330</session-timeout>
+	</session-config>
+</web-app>

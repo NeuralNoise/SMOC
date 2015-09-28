@@ -1,0 +1,28 @@
+package model;
+
+option java_package = "bg.smoc.model";
+option java_outer_classname = "GradeProto";
+
+message Grade {
+	required string taskName = 1;
+	required string language = 2;
+	
+	repeated int32 testIndexes = 3;
+	repeated string maxPoints = 4;
+	required bool explicitGrade = 5;
+
+	required int32 taskType = 16;	
+	required int32 timeLimit = 17;
+	required int32 outputLimit = 18;
+	required int32 testsCount = 19;
+	required int32 memoryLimit = 20;
+}
+
+message GradeResult {
+	optional string sampleOutput = 1;
+	
+	repeated int32 testIndexes = 2;
+	repeated string result = 3;
+	
+	optional bool accept = 4;
+}

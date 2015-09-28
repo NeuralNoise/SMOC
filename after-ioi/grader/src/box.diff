@@ -1,0 +1,134 @@
+--- box_git.c	2008-11-26 22:49:26.000000000 +0200
++++ box.c	2008-12-03 17:13:37.000000000 +0200
+@@ -36,6 +36,7 @@
+ static int file_access;
+ static int verbose;
+ static int memory_limit;
++static int output_limit = -1;
+ static char *redir_stdin, *redir_stdout, *redir_stderr;
+ static char *set_cwd;
+ 
+@@ -145,7 +146,6 @@
+     S(truncate64) = A_FILENAME,
+     S(stat64) = A_FILENAME,
+     S(lstat64) = A_FILENAME,
+-    S(readlink) = A_FILENAME,
+ 
+     // Syscalls permitted always
+     S(exit) = A_YES,
+@@ -188,6 +188,10 @@
+     S(set_thread_area) = A_YES,
+     S(get_thread_area) = A_YES,
+     S(exit_group) = A_YES,
++    S(ugetrlimit) = A_YES,
++    S(rt_sigaction) = A_YES,
++    S(readlink) = A_YES,
++    S(mmap2) = A_YES,
+ 
+     // Syscalls permitted only in liberal mode
+     S(time) = A_YES | A_LIBERAL,
+@@ -202,7 +206,6 @@
+     S(sigpending) = A_YES | A_LIBERAL,
+     S(getrlimit) = A_YES | A_LIBERAL,
+     S(getrusage) = A_YES | A_LIBERAL,
+-    S(ugetrlimit) = A_YES | A_LIBERAL,
+     S(gettimeofday) = A_YES | A_LIBERAL,
+     S(select) = A_YES | A_LIBERAL,
+     S(readdir) = A_YES | A_LIBERAL,
+@@ -220,13 +223,11 @@
+     S(getcwd) = A_YES | A_LIBERAL,
+     S(nanosleep) = A_YES | A_LIBERAL,
+     S(rt_sigreturn) = A_YES | A_LIBERAL,
+-    S(rt_sigaction) = A_YES | A_LIBERAL,
+     S(rt_sigprocmask) = A_YES | A_LIBERAL,
+     S(rt_sigpending) = A_YES | A_LIBERAL,
+     S(rt_sigtimedwait) = A_YES | A_LIBERAL,
+     S(rt_sigqueueinfo) = A_YES | A_LIBERAL,
+     S(rt_sigsuspend) = A_YES | A_LIBERAL,
+-    S(mmap2) = A_YES | A_LIBERAL,
+     S(_sysctl) = A_YES | A_LIBERAL,
+ #undef S
+ };
+@@ -282,9 +283,9 @@
+ 
+   int sys = syscall_by_name(a);
+   if (sys < 0)
+-    die("Unknown syscall `%s'", a);
++    die("Unknown syscall '%s'", a);
+   if (sys >= NUM_ACTIONS)
+-    die("Syscall `%s' out of range", a);
++    die("Syscall '%s' out of range", a);
+   syscall_action[sys] = act;
+   return 1;
+ }
+@@ -499,8 +500,8 @@
+   char namebuf[4096], *p, *end;
+   static int mem_fd;
+ 
+-  if (!file_access)
+-    die("File access forbidden");
++  //if (!file_access)
++  //  die("File access forbidden");
+   if (file_access >= 9)
+     return;
+ 
+@@ -536,6 +537,8 @@
+   while (*p++);
+ 
+   msg("[%s] ", namebuf);
++  if (strcmp(namebuf, "/proc/meminfo")==0)
++    return;
+   if (file_access >= 3)
+     return;
+ 
+@@ -558,7 +561,7 @@
+       act = match_path_rule(&default_path_rules[i], namebuf);
+ 
+   if (act != A_YES)
+-    die("Forbidden access to file `%s'", namebuf);
++    die("Forbidden access to file '%s'", namebuf);
+ }
+ 
+ static int
+@@ -823,6 +826,12 @@
+   else
+     dup2(1, 2);
+   setpgrp();
++  if (output_limit>=0)
++    {
++      rl.rlim_cur = rl.rlim_max = output_limit * 1024; 
++      if (setrlimit(RLIMIT_FSIZE, &rl) < 0)
++    die("setrlimit: %m");
++    }
+   if (memory_limit)
+     {
+       rl.rlim_cur = rl.rlim_max = memory_limit * 1024;
+@@ -861,7 +870,8 @@
+ -i <file>\tRedirect stdin from <file>\n\
+ -m <size>\tLimit address space to <size> KB\n\
+ -o <file>\tRedirect stdout to <file>\n\
+--p <path>\tPermit access to the specified path (or subtree if it ends with a `/')\n\
++-O <size>\tLimit output generated to <size> KB (per file)\n\
++-p <path>\tPermit access to the specified path (or subtree if it ends with a '/')\n\
+ -p <path>=<act>\tDefine action for the specified path (<act>=yes/no)\n\
+ -r <file>\tRedirect stderr to <file>\n\
+ -s <sys>\tPermit the specified syscall (be careful)\n\
+@@ -880,7 +890,7 @@
+   int c;
+   uid_t uid;
+ 
+-  while ((c = getopt(argc, argv, "a:c:eE:fi:m:o:p:r:s:t:Tvw:")) >= 0)
++  while ((c = getopt(argc, argv, "a:c:eE:fi:m:o:O:p:r:s:t:Tvw:")) >= 0)
+     switch (c)
+       {
+       case 'a':
+@@ -908,6 +918,9 @@
+       case 'o':
+ 	redir_stdout = optarg;
+ 	break;
++      case 'O':
++    output_limit = atol(optarg);
++    break;
+       case 'p':
+ 	if (!set_path_action(optarg))
+ 	  usage();

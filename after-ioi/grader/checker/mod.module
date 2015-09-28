@@ -1,0 +1,33 @@
+#!/usr/bin/python
+import sys
+
+def answer(arg):
+    sys.stdout.writelines([arg, '\n'])
+    sys.stdout.flush()
+
+def main():
+    task_in = open(sys.argv[1], 'r')
+    task_out = open(sys.argv[2], 'w')
+    
+    num = int(task_in.read().strip())
+
+    answer("0 100")
+
+    for i in range(0,10):
+        x = int(raw_input())
+        task_out.writelines([str(x), '\n'])
+        if x < num:
+            answer("1")
+        elif x > num:
+            answer("-1")
+        else:
+            answer("0")
+            task_out.writelines('\n'.join(['---', '10', 'Correct', '']))
+            break
+    else:
+        task_out.writelines('\n'.join(['---', 'Unable to find answer', '']))
+    task_in.close()
+    task_out.close()
+
+if __name__ == '__main__':
+    main()

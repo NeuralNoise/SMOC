@@ -1,0 +1,34 @@
+<project>
+	<property environment="env"/>
+
+	<target name="clean">
+        <delete dir="${basedir}/bin" />
+		<delete dir=".deploy" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${basedir}/bin" />
+
+		<path id="classpath">
+			<fileset dir="${basedir}/lib/" includes="*.jar"/>
+			<fileset dir="${basedir}/wwwroot/ROOT/WEB-INF/lib/" includes="*.jar"/>
+		</path>
+
+		<javac srcdir="${basedir}/src" destdir="${basedir}/bin" classpathref="classpath" debug="true"/>
+	</target>
+
+	<target name="build" depends="compile">
+		<copy todir=".deploy/webapps/">
+			<fileset dir="wwwroot"/>
+		</copy>
+		<jar destfile=".deploy/webapps/ROOT/WEB-INF/lib/smoc.jar" basedir="bin" />
+	</target>
+
+	<target name="deploy" depends="build">
+		<!-- TOMCAT_HOME environment variable must be set before executing this target -->
+		<copy overwrite="true" todir="${env.TOMCAT_HOME}">
+			<fileset dir=".deploy"/>
+		</copy>
+	</target>
+
+</project>

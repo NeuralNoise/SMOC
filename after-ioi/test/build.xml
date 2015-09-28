@@ -1,0 +1,41 @@
+<project>
+	<property environment="env" />
+
+	<target name="clean">
+		<delete dir="${basedir}/bin" />
+		<delete dir="${basedir}/deploy" />
+		<delete dir="${basedir}/deploy/reports" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${basedir}/bin" />
+		<mkdir dir="${basedir}/deploy" />
+
+		<path id="classpath">
+			<fileset dir="${basedir}/lib/" includes="**/*.jar" />
+		</path>
+
+		<javac srcdir="${basedir}/funcTest" destdir="${basedir}/bin" classpathref="classpath" debug="true" />
+		<jar destfile="${basedir}/deploy/funcTest.jar" basedir="${basedir}/bin" />
+
+		<path id="test.classpath">
+			<path refid="classpath" />
+			<fileset file="${basedir}/deploy/funcTest.jar" />
+		</path>
+	</target>
+
+	<target name="run_funtional_tests" depends="compile">
+		<mkdir dir="${basedir}/deploy/reports/" />
+		<junit showoutput="true" fork="no">
+			<classpath refid="test.classpath" />
+			<formatter type="plain" />
+			<batchtest fork="no" todir="${basedir}/deploy/reports/">
+				<fileset dir="${basedir}/funcTest">
+					<include name="**/*Test*" />
+					<exclude name="**/AllTests*" />
+					<exclude name="**/TestConstants*" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+</project>
