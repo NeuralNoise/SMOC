@@ -1,0 +1,18 @@
+All standard checkers award 10 points.
+
+diff.py
+    Does what does diff
+
+diff_stripped.py
+    Lines are stripped/trimmed and then compared
+
+longscheck
+    Checks that the streams of 64-bit signed ints are identical
+    not space/line sensitive
+
+doublescheck
+    Checks that the streams of doubles are identical, Epsilon 0.0000015
+    not space/line sensitive
+
+author.py
+    Returns the last 2 lines of .out file or 0 if format is wrong

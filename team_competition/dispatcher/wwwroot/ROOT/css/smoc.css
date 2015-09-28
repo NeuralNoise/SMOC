@@ -1,0 +1,240 @@
+/* GENERAL */
+body,td {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    color: black;
+    background-color: #C8C8FF;
+}
+
+.clearer {
+    clear: both;
+}
+
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.separator {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.input_field {
+    background: #EAF2FB;
+    border-width: 0;
+    border-color: #000000;
+    border-style: solid;
+    line-height: 110%;
+    border: 1x solid black;
+}
+
+.output_field1 {
+    font-family: Arial;
+    font-size: 10pt;
+    color: #000000;
+    background: #FFD7AF;
+    border-width: 0;
+    border-color: #000000;
+    border-style: solid;
+    line-height: 110%;
+    border: 1x solid black;
+}
+
+.output_field2 {
+    background: #F6F8ED;
+    border-width: 0;
+    border-color: #000000;
+    border-style: solid;
+    line-height: 110%;
+    border: 1x solid black;
+}
+
+/* USER_MAIN_PAGE */
+body.main {
+    background-color: #C8C8C8;
+}
+
+.registration {
+    background-color: #C8C8C8;
+}
+ .registration #content {
+    width: 300px;
+    height: 250px;
+    padding: 10px;
+    margin-left: -155px; /* (padding+width)/2 */
+    margin-left: -155px;
+    margin-top: -130px;
+    margin-bottom: -130px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+}
+
+.main #content {
+    width: 900px;
+    padding: 10px;
+    margin-left: -485px; /* (padding+width)/2 */
+    position: absolute;
+    left: 50%;
+    background-color: #FFFFFF;
+    vertical-align: top;
+}
+
+.main #login_header {
+    margin: 20px auto 20px auto;
+    width: 90%;
+    text-align: right;
+    padding-bottom: 20px;
+}
+
+.main #login_header .login_information {
+    float: left;
+}
+
+.main #login_header .reload_holder {
+    float: right;
+}
+
+.main #left_side {
+    margin-left: 25px;
+    width: 180px;
+    vertical-align: top;
+    float: left;
+}
+
+.main #left_side .contest_name {
+    font-weight: bold;
+}
+
+.main #accepted_submissions {
+    background-color: #000000;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.main #accepted_submissions table {
+    border: none;
+}
+
+.main #accepted_submissions table td {
+    text-align: center;
+}
+
+.main #accepted_submissions table td.left_header_box {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.main #accepted_submissions table td.right_header_box {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.main #accepted_submissions table td.description_box {
+    background-color: #A8C1DA;
+    font-weight: bold;
+}
+
+.main #accepted_submissions table td.normal_box {
+    background-color: #ECF4FB;
+}
+
+.main #announcements {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 1px;
+    width: 180px;
+    background-color: #9B1212;
+    margin-left: auto;
+    margin-right: auto;
+}
+.main #announcements .announcements_header {
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.main #announcements .announcements_content {
+    background-color: #FFD7AF;
+    width: auto;
+    text-align: left;
+    padding: 1px;
+}
+
+.main #right_side {
+    width: 650px;
+	vertical-align: top;
+    float: right;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main .error_message {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    width: 75%;
+    color: red;
+    text-align: center;
+}
+
+.main .processing {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* TODO
+.main #right_side fieldset {
+    border: none;
+    width: 450px;
+}
+
+.main #right_side label {
+    display: block;
+    float: left;
+    margin-left: 15px;
+    width: 100px;
+    text-align: right;
+}
+
+.main #right_side fieldset .input_field {
+    display: block;
+    float: left;
+    width: 260px;
+    vertical-align: middle;
+}
+
+.main #right_side fieldset .submit_button {
+    display: block;
+    float: left;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.main #right_side textarea {
+    margin-left: 15px;
+    border-width: 1px;
+    border-color: #C8C8C8;
+}
+*/
+
+
+/* END USER_MAIN_PAGE */
